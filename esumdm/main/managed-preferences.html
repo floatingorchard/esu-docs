@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Managed Preferences</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+	<style>
+		.generated {
+			color: #999;
+			font-size: 0.8rem;
+			margin-top: 3rem;
+			border-top: 1px solid #ddd;
+			padding-top: 1rem;
+		}
+	</style>
+</head>
+<body>
+<h1>Managed Preferences</h1>
+<p>Reference for the JAMF/MDM-managed preferences consumed by esumdm. These keys
+are read from <code>/Library/Managed Preferences/io.enterprisesoftwareupdate.esumdm.plist</code>,
+typically delivered via a configuration profile.</p>
+<p><strong>Preference Domain:</strong> <code>io.enterprisesoftwareupdate.esumdm</code></p>
+<h2><code>deadline</code></h2>
+<p>Deadline to Update macOS.</p>
+<p><strong>Date</strong></p>
+<p>Macs past this date will be forced to install the update. Users will see increasingly urgent prompts as the deadline approaches.</p>
+<pre><code class="language-xml">&lt;key&gt;deadline&lt;/key&gt;
+&lt;date&gt;2025-12-31T12:00:00Z&lt;/date&gt;
+</code></pre>
+<h2><code>deadline_hide_timezone</code></h2>
+<p>Hide Deadline Time Zone.</p>
+<p><strong>Boolean</strong></p>
+<p>When true, the time-zone abbreviation is omitted from deadline timestamps shown to end users.</p>
+<pre><code class="language-xml">&lt;key&gt;deadline_hide_timezone&lt;/key&gt;
+&lt;false/&gt;
+</code></pre>
+<h2><code>deadline_show_in_local_time</code></h2>
+<p>Show Deadline in Local Time.</p>
+<p><strong>Boolean</strong></p>
+<p>When true, deadlines shown to end users are rendered in the Mac's local time zone rather than UTC.</p>
+<pre><code class="language-xml">&lt;key&gt;deadline_show_in_local_time&lt;/key&gt;
+&lt;false/&gt;
+</code></pre>
+<h2><code>force_gui_install</code></h2>
+<p>Force GUI Install.</p>
+<p><strong>Boolean</strong></p>
+<p>When true, the macOS update is performed via the native Software Update UI rather than the command-line installer. Users will need to interact with the GUI to complete installation.</p>
+<pre><code class="language-xml">&lt;key&gt;force_gui_install&lt;/key&gt;
+&lt;false/&gt;
+</code></pre>
+<h2><code>helpdesk_message</code></h2>
+<p>Helpdesk Message.</p>
+<p><strong>String</strong> (Required)</p>
+<p>Shown to users when they need assistance or encounter an error.</p>
+<pre><code class="language-xml">&lt;key&gt;helpdesk_message&lt;/key&gt;
+&lt;string&gt;Contact the Helpdesk at (800) 555-1212 for assistance.&lt;/string&gt;
+</code></pre>
+<h2><code>license_file</code></h2>
+<p>License File.</p>
+<p><strong>String</strong></p>
+<p>Absolute path to the Keygen license file. Typically supplied via CLI rather than MDM.</p>
+<pre><code class="language-xml">&lt;key&gt;license_file&lt;/key&gt;
+&lt;string&gt;/Library/Application Support/io.enterprisesoftwareupdate/license.lic&lt;/string&gt;
+</code></pre>
+<h2><code>log_level</code></h2>
+<p>Log Level.</p>
+<p><strong>String</strong></p>
+<p>Controls the verbosity of esumdm log output. Typical values are debug, info, warn, or error.</p>
+<pre><code class="language-xml">&lt;key&gt;log_level&lt;/key&gt;
+&lt;string&gt;info&lt;/string&gt;
+</code></pre>
+<h2><code>mode</code></h2>
+<p>Operation Mode.</p>
+<p><strong>String</strong></p>
+<p>Selects what esumdm does. &quot;macos_update&quot; (the default when unset) applies minor macOS updates. &quot;third_party&quot; runs the preflight/postflight Jamf arrays without performing a macOS update. &quot;macos_upgrade&quot; is reserved for future major-version upgrades and is not yet implemented.</p>
+<pre><code class="language-xml">&lt;key&gt;mode&lt;/key&gt;
+&lt;string&gt;macos_update&lt;/string&gt;
+</code></pre>
+<h2><code>networkquality_disabled</code></h2>
+<p>Disable Network Quality Check.</p>
+<p><strong>Boolean</strong></p>
+<p>When true, skips the internet-speed test before downloading the update.</p>
+<pre><code class="language-xml">&lt;key&gt;networkquality_disabled&lt;/key&gt;
+&lt;false/&gt;
+</code></pre>
+<h2><code>org_logo_path</code></h2>
+<p>Organization Logo Path.</p>
+<p><strong>String</strong> (Required)</p>
+<p>Absolute path to a logo image shown in UI prompts. Administrators must place the logo on the Mac filesystem before deploying ESUMDM. Recommended permissions are world-readable (e.g. 664).</p>
+<pre><code class="language-xml">&lt;key&gt;org_logo_path&lt;/key&gt;
+&lt;string&gt;/usr/local/org/logo.png&lt;/string&gt;
+</code></pre>
+<h2><code>org_name</code></h2>
+<p>Organization Name.</p>
+<p><strong>String</strong> (Required)</p>
+<p>Displayed in UI prompts to end users to identify the managing organization.</p>
+<pre><code class="language-xml">&lt;key&gt;org_name&lt;/key&gt;
+&lt;string&gt;My Org Name&lt;/string&gt;
+</code></pre>
+<h2><code>past_deadline_notify_interval_seconds</code></h2>
+<p>Past-Deadline Notification Interval.</p>
+<p><strong>Integer</strong></p>
+<p>How often, in seconds, esumdm re-prompts a user whose Mac is past the update deadline. Leave unset (or 0) to use the built-in default of 300 seconds (5 minutes).</p>
+<pre><code class="language-xml">&lt;key&gt;past_deadline_notify_interval_seconds&lt;/key&gt;
+&lt;integer&gt;300&lt;/integer&gt;
+</code></pre>
+<h2><code>postflight_disabled</code></h2>
+<p>Disable Postflight Sequence.</p>
+<p><strong>Boolean</strong></p>
+<p>When true, the postflight Jamf policy sequence is skipped entirely.</p>
+<pre><code class="language-xml">&lt;key&gt;postflight_disabled&lt;/key&gt;
+&lt;false/&gt;
+</code></pre>
+<h2><code>postflight_forced</code></h2>
+<p>Force Postflight Sequence.</p>
+<p><strong>Boolean</strong></p>
+<p>Ensures postflight policies run even if the update was installed outside of ESUMDM (e.g. via native Apple Software Update methods).</p>
+<pre><code class="language-xml">&lt;key&gt;postflight_forced&lt;/key&gt;
+&lt;false/&gt;
+</code></pre>
+<h2><code>postflight_jamf_array</code></h2>
+<p>Postflight Policy Array.</p>
+<p><strong>Array</strong></p>
+<p>A list of Jamf custom triggers to run after the OS update. Each element follows the format &quot;User-Facing Text,trigger_name&quot; and will only execute if a Jamf policy is scoped to that trigger.</p>
+<pre><code class="language-xml">&lt;key&gt;postflight_jamf_array&lt;/key&gt;
+&lt;array&gt;
+	&lt;string&gt;Installing Post-Update 1,post_event1&lt;/string&gt;
+&lt;/array&gt;
+</code></pre>
+<h2><code>preflight_disabled</code></h2>
+<p>Disable Preflight Sequence.</p>
+<p><strong>Boolean</strong></p>
+<p>When true, the preflight Jamf policy sequence is skipped entirely.</p>
+<pre><code class="language-xml">&lt;key&gt;preflight_disabled&lt;/key&gt;
+&lt;false/&gt;
+</code></pre>
+<h2><code>preflight_jamf_array</code></h2>
+<p>Preflight Policy Array.</p>
+<p><strong>Array</strong></p>
+<p>A list of Jamf custom triggers to run before the OS update. Each element follows the format &quot;User-Facing Text,trigger_name&quot; and will only execute if a Jamf policy is scoped to that trigger.</p>
+<pre><code class="language-xml">&lt;key&gt;preflight_jamf_array&lt;/key&gt;
+&lt;array&gt;
+	&lt;string&gt;Updating Software Title 1,pre_event1&lt;/string&gt;
+&lt;/array&gt;
+</code></pre>
+<h2><code>target_minos_version</code></h2>
+<p>Minimum Minor OS Version.</p>
+<p><strong>String</strong></p>
+<p>The minimum macOS version ESUMDM should enforce. For example, 15.7.2 on a macOS 15.x Mac. Required in &quot;macos_update&quot; mode.</p>
+<pre><code class="language-xml">&lt;key&gt;target_minos_version&lt;/key&gt;
+&lt;string&gt;15.7.2&lt;/string&gt;
+</code></pre>
+<h2><code>third_party_deadline_receipt</code></h2>
+<p>Third-Party Deadline Receipt.</p>
+<p><strong>String</strong></p>
+<p>Base name for the third_party workflow's state receipts; esumdm appends &quot;.started.bom&quot; (resume marker) and &quot;.complete.bom&quot; (work-done gate) to it. Provide a bare base name with no &quot;.bom&quot; extension. Required in &quot;third_party&quot; mode.</p>
+<pre><code class="language-xml">&lt;key&gt;third_party_deadline_receipt&lt;/key&gt;
+&lt;string&gt;acme-onboarding&lt;/string&gt;
+</code></pre>
+<h2><code>third_party_no_reboot</code></h2>
+<p>Disable Third-Party Reboot.</p>
+<p><strong>Boolean</strong></p>
+<p>When true, esumdm does not reboot the Mac at the end of the third_party workflow.</p>
+<pre><code class="language-xml">&lt;key&gt;third_party_no_reboot&lt;/key&gt;
+&lt;false/&gt;
+</code></pre>
+
+	<p class="generated">esumdm main</p>
+</body>
+</html>
