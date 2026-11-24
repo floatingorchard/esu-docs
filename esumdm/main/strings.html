@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Strings</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+	<style>
+		.generated {
+			color: #999;
+			font-size: 0.8rem;
+			margin-top: 3rem;
+			border-top: 1px solid #ddd;
+			padding-top: 1rem;
+		}
+	</style>
+</head>
+<body>
+<h1>Strings</h1>
+<p>Reference for the user-facing strings shown by esumdm. These keys are read from <code>/Library/Managed Preferences/io.enterprisesoftwareupdate.esumdm.custom.plist</code>,
+typically delivered via a configuration profile. Any key that is omitted falls back to the default shown in its example.</p>
+<p>Placeholders such as <code>%s</code> and <code>%q</code> are filled in by esumdm at display time; keep them in the same order when customizing a string.</p>
+<p>The values shown in the examples are the defaults; customize them to suit your environment.</p>
+<p><strong>Preference Domain:</strong> <code>io.enterprisesoftwareupdate.esumdm.custom</code></p>
+<h2><code>Authenticate</code></h2>
+<p>Authenticate.</p>
+<p><strong>String</strong></p>
+<p>Password prompt shown before installing. %q is the signed-in user's name.</p>
+<pre><code class="language-xml">&lt;key&gt;Authenticate&lt;/key&gt;
+&lt;string&gt;Enter the password for %q:&lt;/string&gt;
+</code></pre>
+<h2><code>AuthenticateOtherUser</code></h2>
+<p>Authenticate Other User.</p>
+<p><strong>String</strong></p>
+<p>Password prompt shown when the signed-in user lacks a secure token and another user's password is required. The first %s is the signed-in user; %q is the secure-token user.</p>
+<pre><code class="language-xml">&lt;key&gt;AuthenticateOtherUser&lt;/key&gt;
+&lt;string&gt;The current signed-in user %s does not have a secure token. Please enter the password for %q:&lt;/string&gt;
+</code></pre>
+<h2><code>CheckingForLatestUpdate</code></h2>
+<p>Checking For Latest Update.</p>
+<p><strong>String</strong></p>
+<p>Progress message shown while finding available updates.</p>
+<pre><code class="language-xml">&lt;key&gt;CheckingForLatestUpdate&lt;/key&gt;
+&lt;string&gt;Finding the latest updates for your Mac...&lt;/string&gt;
+</code></pre>
+<h2><code>ConfirmDevicePluggedIn</code></h2>
+<p>Confirm Device Plugged In.</p>
+<p><strong>String</strong></p>
+<p>Shown when the Mac is running on battery power.</p>
+<pre><code class="language-xml">&lt;key&gt;ConfirmDevicePluggedIn&lt;/key&gt;
+&lt;string&gt;Your computer is not plugged in. Please connect the power adapter before continuing.&lt;/string&gt;
+</code></pre>
+<h2><code>ConfirmDiskSpace</code></h2>
+<p>Confirm Disk Space.</p>
+<p><strong>String</strong></p>
+<p>Shown when the Mac is low on free disk space.</p>
+<pre><code class="language-xml">&lt;key&gt;ConfirmDiskSpace&lt;/key&gt;
+&lt;string&gt;Warning: this computer is low on disk space, software update may not succeed, we recommend cleaning up your disk before running.&lt;/string&gt;
+</code></pre>
+<h2><code>ConfirmLowQualityConnection</code></h2>
+<p>Confirm Low Quality Connection.</p>
+<p><strong>String</strong></p>
+<p>Shown when the measured network quality is below the required minimum.</p>
+<pre><code class="language-xml">&lt;key&gt;ConfirmLowQualityConnection&lt;/key&gt;
+&lt;string&gt;Your network connection quality is below the required minimum to download and install this update. Please check your connection before continuing.&lt;/string&gt;
+</code></pre>
+<h2><code>ConfirmNetworkCheck</code></h2>
+<p>Confirm Network Check.</p>
+<p><strong>String</strong></p>
+<p>Shown when the Mac can't reach Apple's software update servers.</p>
+<pre><code class="language-xml">&lt;key&gt;ConfirmNetworkCheck&lt;/key&gt;
+&lt;string&gt;This computer is unable to reach the necessary Apple servers and may not be connected to the internet. Please check your connection before continuing.&lt;/string&gt;
+</code></pre>
+<h2><code>ConfirmOsInstall</code></h2>
+<p>Confirm OS Install.</p>
+<p><strong>String</strong></p>
+<p>Start-of-workflow prompt in macos_update mode. The first %s is the target macOS version; the second is the administrator deadline.</p>
+<pre><code class="language-xml">&lt;key&gt;ConfirmOsInstall&lt;/key&gt;
+&lt;string&gt;This Mac requires an update to macOS %s. Would you like to proceed with this update?
+
+Additional updates may install before/after the system automatically restarts.  The administrator deadline for this update is %s.&lt;/string&gt;
+</code></pre>
+<h2><code>ConfirmThirdPartyUpdate</code></h2>
+<p>Confirm Third-Party Update.</p>
+<p><strong>String</strong></p>
+<p>Start-of-workflow prompt in third_party mode. %s is the administrator deadline.</p>
+<pre><code class="language-xml">&lt;key&gt;ConfirmThirdPartyUpdate&lt;/key&gt;
+&lt;string&gt;This Mac needs to install required software updates. Would you like to proceed?
+
+The administrator deadline for this update is %s.&lt;/string&gt;
+</code></pre>
+<h2><code>DownloadProgress</code></h2>
+<p>Download Progress.</p>
+<p><strong>String</strong></p>
+<p>Progress message shown while the update downloads. %s is the target macOS version.</p>
+<pre><code class="language-xml">&lt;key&gt;DownloadProgress&lt;/key&gt;
+&lt;string&gt;Downloading macOS %s...&lt;/string&gt;
+</code></pre>
+<h2><code>Error</code></h2>
+<p>Error.</p>
+<p><strong>String</strong></p>
+<p>Generic error alert. %s is the location of the esumdm log file.</p>
+<pre><code class="language-xml">&lt;key&gt;Error&lt;/key&gt;
+&lt;string&gt;An error occurred. %s&lt;/string&gt;
+</code></pre>
+<h2><code>ErrorNetworkConnect</code></h2>
+<p>Network Connection Error.</p>
+<p><strong>String</strong></p>
+<p>Alert shown when the network connection drops during the update.</p>
+<pre><code class="language-xml">&lt;key&gt;ErrorNetworkConnect&lt;/key&gt;
+&lt;string&gt;Error. Your network connection was interrupted. Please try again later when you have reliable internet connectivity&lt;/string&gt;
+</code></pre>
+<h2><code>InstallProgress</code></h2>
+<p>Install Progress.</p>
+<p><strong>String</strong></p>
+<p>Progress message shown while the update installs. %s is the target macOS version.</p>
+<pre><code class="language-xml">&lt;key&gt;InstallProgress&lt;/key&gt;
+&lt;string&gt;Installing macOS %s. Your Mac will restart when this step is complete...&lt;/string&gt;
+</code></pre>
+<h2><code>NetworkBasicCheckProgress</code></h2>
+<p>Network Basic Check Progress.</p>
+<p><strong>String</strong></p>
+<p>Progress message shown while checking basic network connectivity.</p>
+<pre><code class="language-xml">&lt;key&gt;NetworkBasicCheckProgress&lt;/key&gt;
+&lt;string&gt;Connecting...&lt;/string&gt;
+</code></pre>
+<h2><code>NetworkQualityCheckProgress</code></h2>
+<p>Network Quality Check Progress.</p>
+<p><strong>String</strong></p>
+<p>Progress message shown while measuring network quality.</p>
+<pre><code class="language-xml">&lt;key&gt;NetworkQualityCheckProgress&lt;/key&gt;
+&lt;string&gt;Checking internet speed...&lt;/string&gt;
+</code></pre>
+<h2><code>PostflightScripts</code></h2>
+<p>Postflight Scripts.</p>
+<p><strong>String</strong></p>
+<p>Progress message shown while the postflight Jamf policies run.</p>
+<pre><code class="language-xml">&lt;key&gt;PostflightScripts&lt;/key&gt;
+&lt;string&gt;Success!
+
+Please wait, running post-update workflow...&lt;/string&gt;
+</code></pre>
+<h2><code>PreflightScripts</code></h2>
+<p>Preflight Scripts.</p>
+<p><strong>String</strong></p>
+<p>Progress message shown while the preflight Jamf policies run.</p>
+<pre><code class="language-xml">&lt;key&gt;PreflightScripts&lt;/key&gt;
+&lt;string&gt;Running preflight workflow...&lt;/string&gt;
+</code></pre>
+<h2><code>PromptGUIInstall</code></h2>
+<p>Prompt GUI Install.</p>
+<p><strong>String</strong></p>
+<p>Shown when the update must be finished in System Settings. The first %s is the target macOS version; the second is the button label.</p>
+<pre><code class="language-xml">&lt;key&gt;PromptGUIInstall&lt;/key&gt;
+&lt;string&gt;You will need to complete the install of macOS %s using the Software Update user interface. Click '%s' to open the preference pane.&lt;/string&gt;
+</code></pre>
+<h2><code>ThirdPartyComplete</code></h2>
+<p>Third-Party Complete.</p>
+<p><strong>String</strong></p>
+<p>Success alert shown after the third_party workflow finishes.</p>
+<pre><code class="language-xml">&lt;key&gt;ThirdPartyComplete&lt;/key&gt;
+&lt;string&gt;All updates complete!&lt;/string&gt;
+</code></pre>
+<h2><code>ThirdPartyReboot</code></h2>
+<p>Third-Party Reboot.</p>
+<p><strong>String</strong></p>
+<p>Alert shown just before the third_party workflow restarts the Mac.</p>
+<pre><code class="language-xml">&lt;key&gt;ThirdPartyReboot&lt;/key&gt;
+&lt;string&gt;Initial Updates Complete. Your Mac will restart in a few seconds...&lt;/string&gt;
+</code></pre>
+<h2><code>UpdateComplete</code></h2>
+<p>Update Complete.</p>
+<p><strong>String</strong></p>
+<p>Success alert shown after the macos_update workflow finishes.</p>
+<pre><code class="language-xml">&lt;key&gt;UpdateComplete&lt;/key&gt;
+&lt;string&gt;All Updates Complete! This Mac is up to date.&lt;/string&gt;
+</code></pre>
+
+	<p class="generated">esumdm main</p>
+</body>
+</html>
